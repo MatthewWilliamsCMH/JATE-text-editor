@@ -1,1 +1,1 @@
-# pea-text-editor
+# PWA Text Editor
