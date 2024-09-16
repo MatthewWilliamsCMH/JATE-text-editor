@@ -6,25 +6,25 @@ const butInstall = document.getElementById('buttonInstall');
 window.addEventListener('beforeinstallprompt', (event) => {
     event.preventDefault();
 
-    installBtn.style.visibility = 'visible'; //makes install button visible; I was reading somewhere that this is not a best practice for accessibility
-    textHeader.textContent = 'Click the button to install!'; //change the header from the JATE logo to the install instruction
+    butInstall.style.visibility = 'visible'; //makes install button visible; I read somewhere that this is not a best practice for accessibility
+    // textHeader.textContent = 'Click the button to install!'; //change the header from the JATE logo to the install instruction
   
-    installBtn.addEventListener('click', () => {
+    butInstall.addEventListener('click', () => {
         event.prompt(); //per ChatGPT and other sources on the web, this is incorrect, so why does it work?
-        installBtn.setAttribute('disabled', true);
-        installBtn.textContent = 'Installed!';
+        butInstall.setAttribute('disabled', true);
+        butInstall.textContent = 'Installed!';
     });
 // TODO: Implement a click event handler on the `butInstall` element
     butInstall.addEventListener('click', async () => {
         event.prompt();
-        installBtn.setAttribute('disabled', true);
-        installBtn.textContent = 'Installed!';
+        butInstall.setAttribute('disabled', true);
+        butInstall.textContent = 'Installed!';
     });
 });
 
-// TODO: Add an handler for the `appinstalled` event
+// TODO: Add a handler for the `appinstalled` event
 window.addEventListener('appinstalled', (event) => {
-    textHeader.textContent = 'Successfully installed!'; //change header to indicate successful installation; this may be superseded by If block in ChatGPT code above.
+    // textHeader.textContent = 'Successfully installed!'; //change header to indicate successful installation
     console.log('👍', 'appinstalled', event);
   }
 );

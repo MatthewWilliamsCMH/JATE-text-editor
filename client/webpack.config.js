@@ -9,34 +9,33 @@ const { InjectManifest } = require('workbox-webpack-plugin'); //injects a servic
 module.exports = () => {
   return {
     mode: 'development', //sets Webpack to development mode; if this is changed to "production", the files in the dist folder will be minified and undiagnosable
-    entry: { //specifies the entry points (kind of like scripts in package.json) for the app. What does this mean, though?
-      main: './client/src/js/index.js',
-      install: './client/src/js/install.js',
+    entry: { //specifies the entry points (kind of like scripts in package.json) for the app
+      main: './src/js/index.js',
+      install: './src/js/install.js',
     },
     output: { //where the bundle will be output (the 'dist' directory)
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      new HtmlWebpackPlugin ({ //this regenerates the HTML that will be packaged in the bundle
-        template: './client/index.html',
+      new HtmlWebpackPlugin ({ //regenerates the HTML that will be packaged in the bundle
+        template: './index.html',
         title: 'JATE Text Editor'
       }),
       new InjectManifest({
-        swSrc: './client/src-sw.js',
-        swDest: 'service-worker.js'
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js'
       }),
       new WebpackPwaManifest({ //generates the manifest.json file required to be a PWA
         name: 'JATE Text Editor',
         short_name: 'JATE',
         description: 'JATE text-editor app',
-        background_color: '#fff',
-        theme_color: 'green',
+        background_color: 'white',
         start_url: './',
         publicPath: './', //what is this?
         icons: [
           {
-            src: path.resolve('./client/src/images/logo.png'),
+            src: path.resolve('./src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join('src', 'icons')
           }

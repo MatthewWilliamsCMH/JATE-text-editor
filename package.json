@@ -1,38 +1,26 @@
 {
   "name": "JATE",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "dev": "webpack-dev-server",
-    "build": "webpack --mode development",
-    "start": "webpack --watch"
+    "start:dev": "concurrently \"cd client && npm run build\" \"cd server && npm run server\" ",
+    "start": "npm run build && cd server && node server.js",
+    "server": "cd server && node server.js --ignore client",
+    "build": "cd client && npm run build",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "client": "cd client && npm start"
   },
-  "author": "2U",
+
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@babel/core": "^7.15.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
-    "@babel/plugin-transform-runtime": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
-    "@babel/runtime": "^7.15.3",
-    "babel-loader": "^8.2.2",
-    "css-loader": "^6.2.0",
-    "html-webpack-plugin": "^5.3.2",
-    "http-server": "^14.1.1",
-    "style-loader": "^3.2.1",
-    "webpack": "^5.51.1",
-    "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.0.0",
-    "webpack-pwa-manifest": "^4.0.0",
-    "workbox-webpack-plugin": "^6.2.4"
-  },
   "dependencies": {
-    "express": "^4.21.0",
-    "idb": "^6.1.5",
-    "workbox": "^0.0.0",
-    "workbox-cacheable-response": "^7.1.0",
-    "workbox-expiration": "^7.1.0",
-    "workbox-precaching": "^7.1.0",
-    "workbox-recipes": "^7.1.0",
-    "workbox-routing": "^7.1.0",
-    "workbox-strategies": "^7.1.0"
+    "express": "^4.17.1",
+    "if-env": "^1.0.4"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4"
   }
 }
