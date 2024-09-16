@@ -19,7 +19,7 @@ const jateDb = await openDB('jate', 1); //opens or creates the database "jate" f
 const tx = jateDb.transaction('jate', 'readwrite'); //starts a transaction on the jate objectStore (table)
 const store = tx.objectStore('jate'); //accesses the table called "jate" within the transaction
 // const request = store.put({ id: id, jate: content }); //insert data for the keys id and jate into the objectStore; removed id
-const request = store.put({ jate: content }); //insert data for the keys id and jate into the objectStore
+const request = store.put({ jate: content }); //insert data for the keys id and jate into the objectStore; should this be store.add?
 const result = await request;
 console.log('Data saved to the database', result);
 
@@ -32,5 +32,3 @@ result = await request; //keep because the result will change
 console.log('Data retrieved from the database', result);
 
 initdb();
-
-

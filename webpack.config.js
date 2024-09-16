@@ -10,8 +10,8 @@ module.exports = () => {
   return {
     mode: 'development', //sets Webpack to development mode; if this is changed to "production", the files in the dist folder will be minified and undiagnosable
     entry: { //specifies the entry points (kind of like scripts in package.json) for the app. What does this mean, though?
-      main: './src/js/index.js',
-      install: './src/js/install.js'
+      main: './client/src/js/index.js',
+      install: './client/src/js/install.js',
     },
     output: { //where the bundle will be output (the 'dist' directory)
       filename: '[name].bundle.js',
@@ -19,26 +19,26 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin ({ //this regenerates the HTML that will be packaged in the bundle
-        template: './index.html',
-        title: 'Jate PWA Text Editor'
+        template: './client/index.html',
+        title: 'JATE Text Editor'
       }),
       new InjectManifest({
-        swSrc: './src-sw.js',
+        swSrc: './client/src-sw.js',
         swDest: 'service-worker.js'
       }),
       new WebpackPwaManifest({ //generates the manifest.json file required to be a PWA
-        name: 'Jate PWA Text Editor',
-        short_name: 'Jate',
-        description: 'Jate text-editor app',
-        background_color: 'rgba(255, 255, 128, .5)',
+        name: 'JATE Text Editor',
+        short_name: 'JATE',
+        description: 'JATE text-editor app',
+        background_color: '#fff',
         theme_color: 'green',
         start_url: './',
         publicPath: './', //what is this?
         icons: [
           {
-            src: path.resolve('./src/images/logo.png'),
+            src: path.resolve('./client/src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
-            destination: path.join('assets', icon)
+            destination: path.join('src', 'icons')
           }
         ]
       }),
@@ -55,7 +55,7 @@ module.exports = () => {
           use: {
             loader: 'babel-loader', // babel transpiles JS files allowing browsers that may not support modern JS syntax or features natively
             options: {
-                presets: ['@babel.preset-env'],
+                presets: ['@babel/preset-env'],
                 plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime']
             }
           }
