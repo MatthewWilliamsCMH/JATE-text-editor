@@ -18,7 +18,7 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      new HtmlWebpackPlugin ({ //regenerates the HTML that will be packaged in the bundle
+      new HtmlWebpackPlugin ({ //regenerates the HTML that will be packaged in the bundle; custom plug-in?
         template: './index.html',
         title: 'JATE Text Editor'
       }),
@@ -27,6 +27,7 @@ module.exports = () => {
         swDest: 'src-sw.js'
       }),
       new WebpackPwaManifest({ //generates the manifest.json file required to be a PWA
+        fingerprints: false,
         name: 'JATE Text Editor',
         short_name: 'JATE',
         description: 'JATE text-editor app',
@@ -35,9 +36,9 @@ module.exports = () => {
         publicPath: './', //what is this?
         icons: [
           {
-            src: path.resolve('./src/images/logo.png'),
+            src: path.resolve('src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
-            destination: path.join('src', 'icons')
+            destination: path.join('assets', 'icons')
           }
         ]
       }),
@@ -58,7 +59,11 @@ module.exports = () => {
                 plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime']
             }
           }
-        }
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
+          type: 'asset/resource',
+        },
       ]
     }
   };

@@ -20,7 +20,7 @@ const pageCache = new CacheFirst({ //serve assets from the cache first; if not f
 });
 
 warmStrategyCache({
-  urls: ['/index.html', '/'], //populate teh cache with important urls like index and home; it uses the pageCache strategy defined above
+  urls: ['/index.html', '/'], //populate the cache with important urls like index and home; it uses the pageCache strategy defined above
   strategy: pageCache
 });
 
